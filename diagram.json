@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "author": "w24060338",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -80,
+      "left": 220,
+      "attrs": { "temperature": "27", "humidity": "65", "label": "Temp & Humidity" }
+    },
+    { "type": "wokwi-breadboard-half", "id": "bb2", "top": 237, "left": 588.4, "attrs": {} },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_n",
+      "top": 622.7,
+      "left": -57.8,
+      "attrs": { "value": "2048", "label": "Nitrogen (0-140)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_p",
+      "top": 620,
+      "left": 60,
+      "attrs": { "value": "2048", "label": "Phosphorus (5-145)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_k",
+      "top": 622.7,
+      "left": 182.2,
+      "attrs": { "value": "2048", "label": "Potassium (5-205)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_ph",
+      "top": 620,
+      "left": 300,
+      "attrs": { "value": "2600", "label": "pH (3.5-9.9)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_rain",
+      "top": 620,
+      "left": 420,
+      "attrs": { "value": "2048", "label": "Rainfall (20-300mm)" }
+    },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": 217.6,
+      "left": -445.6,
+      "attrs": { "pins": "i2c", "label": "Crop Display" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND", "black", [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND", "black", [ "v0" ] ],
+    [ "lcd1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.4", "black", [ "v195.5", "h5" ] ],
+    [ "dht1:VCC", "esp:3V3.2", "red", [ "v13.1", "h-119.8", "v-67.2", "h-124.8", "v57.78" ] ],
+    [ "esp:GND.4", "esp:GND.3", "black", [ "h0" ] ],
+    [
+      "esp:GND.1",
+      "lcd1:GND",
+      "black",
+      [ "h-14.68", "v-9.78", "h-19.2", "v9.6", "h-48", "v-28.8", "h-374.4", "v38.4", "v9.6" ]
+    ],
+    [
+      "esp:8",
+      "lcd1:SDA",
+      "#8f4814",
+      [ "h-14.68", "v-9.78", "h-19.2", "v9.6", "h-422.4", "v-9.6", "h-19.2", "v9.6" ]
+    ],
+    [
+      "esp:9",
+      "lcd1:SCL",
+      "gray",
+      [
+        "h-14.68",
+        "v-9.78",
+        "h-19.2",
+        "v9.6",
+        "h-422.4",
+        "v-9.6",
+        "h-28.8",
+        "v9.6",
+        "h0",
+        "v115.2"
+      ]
+    ],
+    [ "esp:3V3.2", "lcd1:VCC", "red", [ "h-33.88", "v76.62", "h-432", "v144" ] ],
+    [
+      "esp:4",
+      "pot_n:SIG",
+      "blue",
+      [ "h-24.28", "v537.42", "h-57.6", "v115.2", "h28.8", "v-9.6", "h27" ]
+    ],
+    [ "esp:2", "pot_p:SIG", "cyan", [ "h52.57", "v643.02", "h-19.2", "v-9.6", "h-28.8" ] ],
+    [
+      "esp:3",
+      "pot_k:SIG",
+      "yellow",
+      [
+        "v-0.18",
+        "h-14.68",
+        "v-9.6",
+        "h-19.2",
+        "v9.6",
+        "h-9.6",
+        "v9.6",
+        "h-9.6",
+        "v19.2",
+        "h9.6",
+        "v48",
+        "h-9.6",
+        "v19.2",
+        "h19.2",
+        "v0",
+        "h0",
+        "v38.4",
+        "h153.6",
+        "v0",
+        "h9.6",
+        "v-19.2",
+        "h38.4",
+        "v451.2",
+        "h28.8",
+        "v-9.6",
+        "h19.2"
+      ]
+    ],
+    [
+      "esp:4",
+      "pot_ph:SIG",
+      "blue",
+      [
+        "h-24.28",
+        "v-9.78",
+        "h-19.2",
+        "v48",
+        "h-28.8",
+        "v76.8",
+        "h9.6",
+        "v76.8",
+        "h19.2",
+        "v38.4",
+        "h163.2",
+        "v19.2",
+        "h57.6",
+        "v-19.2",
+        "h105.6",
+        "v422.4",
+        "h38.4",
+        "v-9.6",
+        "h12.6"
+      ]
+    ],
+    [
+      "esp:5",
+      "pot_rain:SIG",
+      "white",
+      [
+        "h-14.68",
+        "v19.02",
+        "h-38.4",
+        "v-19.2",
+        "h-28.8",
+        "v115.2",
+        "h9.6",
+        "v76.8",
+        "h19.2",
+        "v38.4",
+        "h163.2",
+        "v19.2",
+        "h76.8",
+        "v-19.2",
+        "h76.8",
+        "v0",
+        "h9.6",
+        "v9.6",
+        "h19.2",
+        "v297.6",
+        "h115.2",
+        "v105.6",
+        "h28.8",
+        "v-9.6",
+        "h9.6"
+      ]
+    ],
+    [
+      "esp:GND.3",
+      "bb2:bn.1",
+      "black",
+      [ "h23.77", "v28.62", "h19.2", "v-9.6", "h48", "v38.4", "h124.8", "v153.6", "h315.2" ]
+    ],
+    [
+      "esp:40",
+      "dht1:SDA",
+      "#8f4814",
+      [ "h33.37", "v19.02", "h38.4", "v-19.2", "h86.4", "v-57.6", "h-5.1" ]
+    ],
+    [ "pot_rain:VCC", "bb2:bp.3", "red", [ "v21.9", "h78.2" ] ],
+    [ "pot_rain:GND", "bb2:bn.4", "black", [ "v31.5", "h202.2" ] ],
+    [ "pot_ph:VCC", "bb2:bp.6", "red", [ "v41.1", "h342.2" ] ],
+    [ "pot_ph:GND", "bb2:bn.7", "black", [ "v50.7", "h371.8" ] ],
+    [ "pot_k:VCC", "bb2:bp.11", "red", [ "v57.6", "h508", "v-316.8" ] ],
+    [ "pot_k:GND", "bb2:bn.12", "black", [ "v67.2", "h537.6", "v-325.1" ] ],
+    [ "pot_p:VCC", "bb2:bp.16", "red", [ "v79.5", "h686.2" ] ],
+    [ "pot_p:GND", "bb2:bn.17", "black", [ "v89.1", "h715.8" ] ],
+    [ "pot_n:VCC", "bb2:bp.21", "red", [ "v98.7", "h855.8" ] ],
+    [ "pot_n:GND", "bb2:bn.22", "black", [ "v115.2", "h892.8", "v-374.4" ] ],
+    [
+      "esp:3V3.1",
+      "bb2:bp.1",
+      "red",
+      [
+        "v-0.18",
+        "h-5.08",
+        "v-38.4",
+        "h105.6",
+        "v67.2",
+        "h28.8",
+        "v153.6",
+        "h57.6",
+        "v57.6",
+        "h134.4",
+        "v153.6",
+        "h296"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}
